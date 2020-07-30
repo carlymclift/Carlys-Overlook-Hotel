@@ -1,7 +1,162 @@
-/* This is an example of using Sass, otherwise plain CSS works too*/
-$primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
-;
+@import "variables";
+@import "mixins";
+
+html {
+  background-image: url('../images/hotel.jpg');
+  background-size: cover;
+  height: 100%;
+  overflow: hidden;
+}
 
 body {
-  background: $primary-background;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  background-color: rgba(254, 177, 219, 0.7); 
+  // opacity: 0.5;
+  border-radius: 10px;
+  margin: 20px;
+  // width: 70vw;
+  // align-content: center;
+}
+
+.booking-history-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  // justify-content: space-around;
+  height: 60%;
+  // width: 80%;
+  background-color: white;
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: rgba(255, 137, 104, 0.7); 
+  // opacity: 0.5;
+  border-radius: 10px;
+  margin: 20px;
+}
+
+h1 {
+  // text-align: center;
+  padding: 30px;
+  margin: 10px;
+  font-size: 50px;
+}
+
+h2 {
+  text-align: center;
+}
+
+.booking-input,
+.user-bookings {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.search-users-sec {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  // align-content: center;
+}
+
+.manage-bookings {
+  width: 50%;
+  // height: 50%;
+}
+
+.book-room-manager,
+.delete-booking-manager {
+  background-color: white;
+  height: 200px;
+  width: 90%;
+  // padding: 30px;
+  margin: 20px;
+  border: 1px solid black
+}
+
+aside {
+  // background-color: white;
+  padding: 20px;
+  height: 60vh;
+  width: 25%;
+  // width: auto;
+}
+
+.log-out-button {
+  height: 40px;
+  // justify-content: center;
+  margin: 50px;
+  border: 3px solid rgb(36, 147, 43);
+  // padding: 10px;
+  border-radius: 30px;
+}
+
+h2 {
+  padding: 15px;
+}
+
+hr {
+  border-color: black;
+}
+
+#login-box {
+  border-color: black;
+  background-color: white;
+  border-style: groove;
+  border-radius: 20px;
+  text-align: center;
+  width: 400px;
+  position: absolute;
+  right: 0;
+  left: 0;
+  margin: auto;
+  font-size: 150%;
+  margin-top: 100px;
+}
+
+.login-field {
+  padding: 20px;
+  font-size: 100%;
+}
+
+input {
+  height: 35px;
+  width: 300px;
+  border-radius: 20px;;
+}
+
+.submit-button {
+  margin: 20px;
+  width: 80px;
+  height: 40px;
+  border-radius: 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+.guest-info,
+.manager-info {
+  // display: grid;
+  // grid-template-columns: 3;
+  display: flex;
+  flex-direction: column, 3;
+  // align-items: stretch;
+  justify-content: space-evenly;
+}
+
+.book-trip-sec,
+.manage-users {
+  background-color: rgba(104, 164, 255, 0.7); 
+  width: 60%;
 }
