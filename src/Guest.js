@@ -7,14 +7,22 @@ class Guest extends User {
     this.name = userInfo.name
     this.firstName = this.getFirstName()
     this.bookings = []
-    this.totalSpent = this.getTotalMoneyUserHasSpent
+    // this.totalSpent = 0
   }
 
   getFirstName() {
-      return this.name.split(' ')[0]
+    return this.name.split(' ')[0]
   }
 
-  getTotalMoneyUserHasSpent(bookings, rooms) {
+  getAllGuestBookings(bookings) {
+    return bookings.filter(booking => {
+      if (booking.userID === this.id) {
+        this.bookings.push(booking)
+      }
+    })
+  }
+
+  getTotalMoneyGuestHasSpent(bookings, rooms) {
     let bookingsById = bookings.filter(booking => {
       return booking.userID === this.id
     })
@@ -24,6 +32,7 @@ class Guest extends User {
           counter += room.costPerNight
         }
       })
+      this.totalSpent === counter
       return counter
     }, 0)
   }

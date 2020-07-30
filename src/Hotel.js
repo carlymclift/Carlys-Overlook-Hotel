@@ -3,7 +3,7 @@ class Hotel {
     this.availableRooms = [];
     this.totalRevenue = [];
     this.occupancy = null;
-    this.rooms = 25;
+    this.rooms = 25
   }
 }
 

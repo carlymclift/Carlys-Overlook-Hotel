@@ -30,17 +30,19 @@ describe('Guest', () => {
     expect(guest.id).to.eql(1);
     expect(guest.name).to.eql('Leatha Ullrich');
     expect(guest.firstName).to.eql('Leatha')
-    expect(guest.bookings).to.deep.eql([]);
-    expect(guest.totalSpent).to.eql(172.09);
+    // expect(guest.bookings).to.deep.eql([bookingsSampleData[4]]);
+    // expect(guest.totalSpent).to.eql(0);
   })
 
-//   it('Should be able to login as a traveler', () => {
-//     expect(traveler.logIn('traveler7', 'travel2020')).to.equal('Hello Emmet Sandham!')
-//   })
+  it('Should be able to login as a traveler', () => {
+    expect(guest.login('customer1', 'overlook2020')).to.equal(false)
+    expect(guest.login('customer55', 'overlook2020')).to.equal('The username or password is incorrect')
+  })
 
   it('Should be able to calculate total money spent at Overlook', () => {
-    let userMoneySpent = guest.getTotalMoneyUserHasSpent(bookingsSampleData, roomsSampleData)
+    let userMoneySpent = guest.getTotalMoneyGuestHasSpent(bookingsSampleData, roomsSampleData)
     expect(userMoneySpent).to.eql(172.09)
+    // expect(guest.totalSpent).to.eql(172.09)
   })
 
   it('Should get the first name of the guest', () => {
@@ -48,5 +50,8 @@ describe('Guest', () => {
     expect(userFirstName).to.eql('Leatha')
   })
 
-// [bookingsSampleData[4]], 172.09
+  it('Should get all the bookings made by the guest', () => {
+    guest.getAllGuestBookings(bookingsSampleData)
+    expect(guest.bookings).to.deep.eql([bookingsSampleData[4]])
+  })
 });

@@ -1,12 +1,16 @@
 import User from './User.js'
 
 class Manager extends User {
-  constructor(username, password) {
-    super(username, password) 
+  constructor() {
+    super('manager', 'overlook2020') 
   }
 
-  findGuestsByName() {
-      
+  searchGuestsByName(input, users) {
+    return users.find(user => {
+      if ((user.name.toLowerCase()).includes(input.toLowerCase())) {
+        return user
+      }
+    })
   }
 }
 
