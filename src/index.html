@@ -4,7 +4,7 @@
     <title>Travel Tracker</title>
   </head>
   <body>
-    <section class='main-page hidden'> 
+    <section class='main-page'> 
       <header>
         <h1>Welcome to Overlook Hotel!</h1>
       </header>
@@ -23,7 +23,7 @@
         </div>
       </div>
     </section>
-    <section id='guest-sec'>
+    <section id='guest-sec' class="hidden">
       <header>
         <h1>Welcome Guest!</h1>
         <button class="log-out-button">Log out</button>
@@ -68,10 +68,10 @@
         <section class='manage-users'>
           <div class="search-users-sec">
             <input type="text" placeholder="Search guests...">
-            <button class="search-users">search</button>
+            <button class="search-users-button">search</button>
           </div>
           <div class="user-bookings">
-            <section>
+            <section class="guest-left">
               <h3>Guest Name</h3>
               <div class="user-history">
 
