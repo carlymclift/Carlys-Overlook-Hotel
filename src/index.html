@@ -1,12 +1,98 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <title>Webpack Starter Kit</title>
+    <title>Travel Tracker</title>
   </head>
   <body>
-    <h1>Webpack Starter Kit</h1>
+    <section class='main-page'> 
+      <header>
+        <h1>Welcome to Overlook Hotel!</h1>
+      </header>
+      <div id='login-box'>
+        <h3>Enter Login Info:</h3>
+        <div class='login-field'>
+        <label>Username:
+            <br />
+              <input type="test" placeholder="JohnDoe" name="user-name" /></label>
+            <br />
+        <label>Password:
+            <br />
+              <input type="text" placeholder="********" name="password" /></label>
+            <br />
+            <button class='submit-button'>Login</button>
+        </div>
+      </div>
+    </section>
+    <section id='guest-sec' class='hidden'>
+      <header>
+        <h1>Welcome Guest!</h1>
+        <button class="log-out-button">Log out</button>
+      </header>
+      <section class='guest-info'>
+        <aside>
+          <h2>Booking History:</h2>
+          <div class="booking-history-list">
+            <span>booking</span>
+            <span>booking</span>
+            <span>booking</span>
 
-    <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
+          </div>
+          <h2>Amount Spent: $1768.87</h2>
+        </aside>
+        <section class='book-trip-sec'>
+          <h2>Book a room</h2><hr>
+          <div class="booking-input">
+            <section>
+              <h3>Select date</h3>
+              <h3>Filter by:</h3>
+            </section>
+            <section>
+              <h3>available rooms list</h3>
+            </section>
+          </div>
+        </div>
+      </section>
+    </section>
+  </section>
+    <section id='manager-sec' class="hidden">
+      <header>
+        <h1>Overlook Manager</h1>
+        <button class="log-out-button">Log out</button>
+      </header>
+      <section class='manager-info'>
+        <aside>
+          <h2>Rooms Available: 15</h2>
+          <h2>Total Revenue: $208279.87</h2>
+          <h2>Occupancy: 55%</h2>
+        </aside>
+        <section class='manage-users'>
+          <div class="search-users-sec">
+            <input type="text" placeholder="Search guests...">
+            <button class="search-users">search</button>
+          </div>
+          <div class="user-bookings">
+            <section>
+              <h3>Guest Name</h3>
+              <div class="user-history">
+
+              </div>
+              <h3>guest spent:</h3>
+            </section>
+            <section class="manage-bookings">
+              <h3>Manage bookings:</h3>
+              <div class="book-room-manager">
+
+              </div>
+              <div class="delete-booking-manager">
+
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+    </section>
+    </section>
+    <!-- <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px"> -->
 
     <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
   </body>
