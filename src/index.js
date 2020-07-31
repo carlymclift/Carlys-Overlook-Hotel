@@ -19,14 +19,16 @@ import Guest from './Guest';
 import Manager from './Manager';
 import Hotel from './Hotel';
 import fetchData from './fetchAllData';
+import DomUpdates from './DomUpdates';
 // import guestsSampleData from '../test/testSampleData/guest-sample';
 // import DomUpdates from './DomUpdates';
 
-let manager, guest, user
+let manager, guest, user, domUpdate
 
 window.onload = startUp();
 
 document.getElementById('login-button').addEventListener('click', loadUserPage)
+// document.getElementById('log-out-button').addEventListener('click', window.location.reload(false))
 const username = document.getElementById('username-input')
 const password = document.getElementById('password-input')
 let loginPage = document.querySelector('.main-page')
@@ -46,7 +48,15 @@ function startUp() {
       data.bookingsData = allData.bookingsData;
       data.roomsData = allData.roomsData;
     })
+    .then(() => {
+      instantiateClasses();
+    //   populatePage();
+    })
     .catch((err) => console.log(err.message));
+}
+
+function instantiateClasses() {
+  domUpdate = new DomUpdates()
 }
 
 function loadUserPage() {
@@ -62,7 +72,7 @@ function loadUserPage() {
     loginPage.classList.add('hidden')
     guestPage.classList.remove('hidden')
   } else {
-    alert('Wrong user name or password')
+    alert('Wrong username or password')
   }
 }
 
@@ -73,13 +83,14 @@ function instantiateGuest(username, password) {
   console.log(currentUser)
   guest = new Guest(currentUser, username, password)
   console.log(guest)
-  getAllGuestInfo(guest)
+  getAllGuestInfo(currentUser, guest)
 }
 
-function getAllGuestInfo(guest) {
+function getAllGuestInfo(currentUser, guest) {
     let guestBookings = guest.getAllGuestBookings(data.bookingsData)
     // console.log('b', guestBookings)
     let sortedBookings = guestBookings.sort((a, b) => new Date(b.date) - new Date(a.date))
     console.log('c', sortedBookings)
     guest.getTotalMoneyGuestHasSpent(data.bookingsData, data.roomsData)
+    domUpdate.populateGuestPageWithInfo(guest, sortedBookings)
 }
