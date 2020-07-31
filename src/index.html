@@ -6,6 +6,7 @@
   <body>
     <section class='main-page'> 
       <header>
+        <div class="logo"></div>
         <h1>Welcome to Overlook Hotel!</h1>
       </header>
       <div id='login-box'>
@@ -25,19 +26,15 @@
     </section>
     <section id='guest-sec' class="hidden">
       <header>
-        <h1>Welcome Guest!</h1>
-        <button class="log-out-button">Log out</button>
+        <div class="logo"></div>
+        <h1 id="greet-on-guest-page">Welcome Guest!</h1>
+        <button id="log-out-button" onClick="window.location.reload();">Log out</button>
       </header>
       <section class='guest-info'>
         <aside>
           <h2>Booking History:</h2>
-          <div class="booking-history-list">
-            <span>booking</span>
-            <span>booking</span>
-            <span>booking</span>
-
-          </div>
-          <h2>Amount Spent: $1768.87</h2>
+          <span id="booking-list" class="booking-history-list"></span>
+          <h2 id="amount-spent">Amount Spent: $1768.87</h2>
         </aside>
         <section class='book-trip-sec'>
           <h2>Book a room</h2><hr>
@@ -48,6 +45,7 @@
             </section>
             <section>
               <h3>available rooms list</h3>
+              <span id="available-rooms-cards"></span>
             </section>
           </div>
         </div>
@@ -56,8 +54,9 @@
   </section>
     <section id='manager-sec' class="hidden">
       <header>
+        <div class="logo"></div>
         <h1>Overlook Manager</h1>
-        <button class="log-out-button">Log out</button>
+        <button id="log-out-button" onClick="window.location.reload();">Log out</button>
       </header>
       <section class='manager-info'>
         <aside>

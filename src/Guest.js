@@ -27,15 +27,15 @@ class Guest extends User {
     let bookingsById = bookings.filter(booking => {
       return booking.userID === this.id
     })
-    return rooms.reduce((counter, room) => {
+    let moneySpent = rooms.reduce((counter, room) => {
       bookingsById.forEach(booking => {
         if (booking.roomNumber === room.number) {
           counter += room.costPerNight
         }
       })
-      this.totalSpent += counter
       return counter
     }, 0)
+    this.totalSpent += moneySpent
   }
 }
 
