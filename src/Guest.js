@@ -5,9 +5,9 @@ class Guest extends User {
     super(`customer${userInfo.id}`, 'overlook2020') 
     this.id = userInfo.id
     this.name = userInfo.name
-    this.firstName = this.getFirstName()
+    this.firstName = this.getFirstName(); 
     this.bookings = []
-    // this.totalSpent = 0
+    this.totalSpent = 0
   }
 
   getFirstName() {
@@ -15,11 +15,12 @@ class Guest extends User {
   }
 
   getAllGuestBookings(bookings) {
-    return bookings.filter(booking => {
+    bookings.filter(booking => {
       if (booking.userID === this.id) {
         this.bookings.push(booking)
       }
     })
+    return this.bookings
   }
 
   getTotalMoneyGuestHasSpent(bookings, rooms) {
@@ -32,7 +33,7 @@ class Guest extends User {
           counter += room.costPerNight
         }
       })
-      this.totalSpent === counter
+      this.totalSpent += counter
       return counter
     }, 0)
   }
