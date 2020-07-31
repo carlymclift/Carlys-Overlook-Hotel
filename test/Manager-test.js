@@ -14,7 +14,7 @@ describe('Manager', () => {
     expect(Manager).to.be.a('function');
   })
 
-  it('Should be an instance of Guest', () => {
+  it('Should be an instance of Manager', () => {
     expect(manager).to.be.an.instanceOf(Manager)
   })
 
