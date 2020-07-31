@@ -1,9 +1,5 @@
 import { expect } from 'chai';
 import User from '../src/User.js';
-// import Guest from '../src/Guest.js';
-// import guestsSampleData from './testSampleData/guest-sample';
-// import bookingsSampleData from './testSampleData/bookings-sample';
-// import roomsSampleData from './testSampleData/room-sample.js';
 import Manager from '../src/Manager.js';
 import guestsSampleData from './testSampleData/guest-sample.js';
 
@@ -12,8 +8,6 @@ describe('Manager', () => {
 
   beforeEach(() => {
     manager = new Manager('manager', 'overlook2020')
-    // user1 = new User('manager', 'overlook2020')
-    // user2 = new User('manager', 'overlook2020')
   })
 
   it('Should be a function', () => {
