@@ -59,10 +59,19 @@
         <button id="log-out-button" onClick="window.location.reload();">Log out</button>
       </header>
       <section class='manager-info'>
-        <aside>
-          <h2>Rooms Available: 15</h2>
-          <h2>Total Revenue: $208279.87</h2>
-          <h2>Occupancy: 55%</h2>
+        <aside class="hotel-info-sec">
+          <span>
+            <h2 class="manager-left-text">Rooms Available Today:</h2>
+            <p id="rooms-available"></p>
+          </span>
+          <span>
+            <h2 class="manager-left-text">Total Revenue Today:</h2>
+            <p id="total-revenue"></p>
+          </span>
+          <span>
+            <h2 class="manager-left-text">Today's Occupancy:</h2>
+            <p id="occupancy"></p>
+          </span>
         </aside>
         <section class='manage-users'>
           <div class="search-users-sec">
@@ -71,8 +80,8 @@
           </div>
           <div class="user-bookings">
             <section class="guest-left">
-              <h3>Guest Name</h3>
-              <div class="user-history">
+              <h3>Guests:</h3>
+              <div id="users">
 
               </div>
               <h3>guest spent:</h3>
@@ -80,10 +89,8 @@
             <section class="manage-bookings">
               <h3>Manage bookings:</h3>
               <div class="book-room-manager">
-
               </div>
               <div class="delete-booking-manager">
-
               </div>
             </section>
           </div>

@@ -23,7 +23,7 @@ import DomUpdates from './DomUpdates';
 // import guestsSampleData from '../test/testSampleData/guest-sample';
 // import DomUpdates from './DomUpdates';
 
-let manager, guest, user, domUpdate
+let manager, guest, user, domUpdate, hotel
 
 window.onload = startUp();
 
@@ -64,7 +64,7 @@ function loadUserPage() {
   user = new User(username.value, password.value)
   let loginCredentials = user.login(username.value, password.value)
   if (loginCredentials === true) {
-    manager = new Manager(username.value, password.value)
+    instantiateManagerInfo()
     loginPage.classList.add('hidden')
     managerPage.classList.remove('hidden')
   } else if (loginCredentials === false) {
@@ -74,6 +74,15 @@ function loadUserPage() {
   } else {
     alert('Wrong username or password')
   }
+}
+
+function instantiateManagerInfo() {
+  hotel = new Hotel()
+  manager = new Manager(username.value, password.value)
+  hotel.findAllAvailableRoomsByDate('2020/01/10', data.roomsData, data.bookingsData)
+  hotel.calculateTotalRevenueForDate('2020/01/10', data.roomsData, data.bookingsData)
+  hotel.findPercentOccupiedRoomsForDate('2020/01/10', data.bookingsData)
+  domUpdate.populateManagerPageInfo(hotel, data.guestData)
 }
 
 function instantiateGuest(username, password) {

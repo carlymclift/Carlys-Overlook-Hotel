@@ -22,7 +22,23 @@ class DomUpdates {
             </div>`)
     })
   }
-  
+
+  populateManagerPageInfo(hotel, guests) {
+    document.getElementById('rooms-available')
+      .innerText = `${hotel.availableRooms.length}`
+
+    document.getElementById('total-revenue')
+      .innerText = `$${hotel.todaysRevenue}`
+
+    document.getElementById('occupancy')
+      .innerText = `${hotel.occupancy}%`
+
+    guests.forEach(guest => {
+      document.getElementById('users')
+        .insertAdjacentHTML('afterBegin', `
+              <p>${guest.name}</p>`)
+    })
+  } 
 }
 
 export default DomUpdates

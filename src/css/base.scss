@@ -69,11 +69,12 @@ p {
   margin-left: 10px;
 }
 
-.user-history {
+#users {
   background-color: white;
   height: 70%;
   width: 100%;
   border-radius: 30px;
+  overflow: scroll;
 }
 
 aside {
@@ -192,11 +193,33 @@ input {
   display: none;
 }
 
-.guest-info,
-.manager-info {
+.guest-info {
   display: flex;
   flex-direction: column, 3;
   justify-content: space-evenly;
+}
+
+#rooms-available,
+#total-revenue,
+#occupancy {
+  font-size: 50px;
+  margin: 0px;
+  text-align: center;
+}
+
+.hotel-info-sec {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.manager-left-text {
+  font-size: 15px;
+}
+
+.manager-info {
+  display: flex;
+  flex-direction: row;
 }
 
 .book-trip-sec,

@@ -9,11 +9,12 @@ class Hotel {
   findAllAvailableRoomsByDate(date, rooms, bookings) {
     const bookingsOnDate = bookings.filter(booking => booking.date === date)
     const unavailableRooms = bookingsOnDate.map(booking => booking.roomNumber)
-    return rooms.forEach(room => {
+    let avRooms = rooms.forEach(room => {
       if (!unavailableRooms.includes(room.number)) {
         this.availableRooms.push(room)
       }
     })
+    return avRooms
   }
 
   calculateTotalRevenueForDate(date, rooms, bookings) {
