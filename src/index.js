@@ -28,12 +28,13 @@ let manager, guest, user, domUpdate, hotel
 window.onload = startUp();
 
 document.getElementById('login-button').addEventListener('click', loadUserPage)
-// document.getElementById('log-out-button').addEventListener('click', window.location.reload(false))
+document.getElementById('search-users-button').addEventListener('click', findGuestByNameSearch)
 const username = document.getElementById('username-input')
 const password = document.getElementById('password-input')
 let loginPage = document.querySelector('.main-page')
 let managerPage = document.getElementById('manager-sec')
 let guestPage = document.getElementById('guest-sec')
+const guestNameSearch = document.getElementById('search-input')
 
 const data = {
   guestData: null,
@@ -59,10 +60,23 @@ function instantiateClasses() {
   domUpdate = new DomUpdates()
 }
 
+function findGuestByNameSearch() {
+  console.log(guestNameSearch.value)
+  let foundUser = manager.searchGuestsByName(guestNameSearch.value, data.guestData)
+  console.log(foundUser)
+  guest = new Guest(foundUser, `customer${foundUser.id}`, 'overlook2020')
+  console.log(guest)
+  let guestBookings = guest.getAllGuestBookings(data.bookingsData)
+  let sortedBookings = guestBookings.sort((a, b) => new Date(b.date) - new Date(a.date))
+  guest.getTotalMoneyGuestHasSpent(data.bookingsData, data.roomsData)
+  domUpdate.displayUserSearchedFor(guest, sortedBookings, data.roomsData)
+}
+
 function loadUserPage() {
-  console.log(username.value)
+//   console.log(username.value)
   user = new User(username.value, password.value)
   let loginCredentials = user.login(username.value, password.value)
+//   console.log(loginCredentials)
   if (loginCredentials === true) {
     instantiateManagerInfo()
     loginPage.classList.add('hidden')
@@ -96,10 +110,11 @@ function instantiateGuest(username, password) {
 }
 
 function getAllGuestInfo(currentUser, guest) {
-    let guestBookings = guest.getAllGuestBookings(data.bookingsData)
-    // console.log('b', guestBookings)
-    let sortedBookings = guestBookings.sort((a, b) => new Date(b.date) - new Date(a.date))
-    console.log('c', sortedBookings)
-    guest.getTotalMoneyGuestHasSpent(data.bookingsData, data.roomsData)
-    domUpdate.populateGuestPageWithInfo(guest, sortedBookings)
+  let guestBookings = guest.getAllGuestBookings(data.bookingsData)
+  // console.log('b', guestBookings)
+  let sortedBookings = guestBookings.sort((a, b) => new Date(a.date) - new Date(b.date))
+  console.log('c', sortedBookings)
+  guest.getTotalMoneyGuestHasSpent(data.bookingsData, data.roomsData)
+  domUpdate.populateGuestPageWithInfo(guest, data.roomsData)
+  domUpdate.displayRooms(data.roomsData)
 }

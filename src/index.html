@@ -40,11 +40,21 @@
           <h2>Book a room</h2><hr>
           <div class="booking-input">
             <section>
-              <h3>Select date</h3>
-              <h3>Filter by:</h3>
+              <section>
+                <h3>Select date</h3>
+                <label for="date">Date:</label>
+                <input type="date" name="date" id="date" class="calender"><br>
+                <h3>Filter by:</h3>
+              </section>
+              <section class="filter-section">
+                <button class="filter-button">Suite</button>
+                <button class="filter-button">Single</button>
+                <button class="filter-button">Junior Suite</button>
+                <button class="filter-button">Residential Suite</button>
+              </section>
             </section>
             <section>
-              <h3>available rooms list</h3>
+              <h3>Available Rooms:</h3>
               <span id="available-rooms-cards"></span>
             </section>
           </div>
@@ -75,22 +85,28 @@
         </aside>
         <section class='manage-users'>
           <div class="search-users-sec">
-            <input type="text" placeholder="Search guests...">
-            <button class="search-users-button">search</button>
+            <input type="text" id="search-input" placeholder="Search guests...">
+            <button id="search-users-button">search</button>
           </div>
           <div class="user-bookings">
             <section class="guest-left">
               <h3>Guests:</h3>
-              <div id="users">
-
-              </div>
-              <h3>guest spent:</h3>
+              <div id="users"></div>
             </section>
+            
             <section class="manage-bookings">
-              <h3>Manage bookings:</h3>
-              <div class="book-room-manager">
+              <div class="book-delete">
+                <h3>Book Guest:</h3>
+                <label for="date">Date:</label>
+                <input type="date" name="date" id="date" class="calender manage"><br>
+                <input type="number" placeholder="user id" class="manage" name="user-id" id="user-id">
+                <input type="number" placeholder="room #"  class="manage" name="room-number" id="room-number"><br>
+                <button class="manage">Book</button>
               </div>
-              <div class="delete-booking-manager">
+              <div class="book-delete">
+                <h3>Delete Booking:</h3>
+                <input type="number" placeholder="Booking id" class="manage" name="booking-id" id="booking-id"><br>
+                <button class="manage">Delete</button>
               </div>
             </section>
           </div>
