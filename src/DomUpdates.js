@@ -81,6 +81,8 @@ class DomUpdates {
         </div>`)  
     })
   }
+
+ 
 }
 
 export default DomUpdates

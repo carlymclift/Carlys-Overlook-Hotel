@@ -1,18 +1,5 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-
-// An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
 import './css/_variables.scss';
-// import './css/_mixins.scss';
-
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-// import './images/turing-logo.png'
-// import './images/hotel.jpg'
-
-console.log('This is the JavaScript entry file - your code begins here.');
-
-
 import './css/base.scss';
 import User from './User';
 import Guest from './Guest';
@@ -20,8 +7,8 @@ import Manager from './Manager';
 import Hotel from './Hotel';
 import fetchData from './fetchAllData';
 import DomUpdates from './DomUpdates';
-// import guestsSampleData from '../test/testSampleData/guest-sample';
-// import DomUpdates from './DomUpdates';
+import postBooking from './postBooking';
+import deleteBooking from './deleteBooking';
 
 let manager, guest, user, domUpdate, hotel
 
@@ -29,6 +16,8 @@ window.onload = startUp();
 
 document.getElementById('login-button').addEventListener('click', loadUserPage)
 document.getElementById('search-users-button').addEventListener('click', findGuestByNameSearch)
+document.getElementById('book-button').addEventListener('click', addBooking)
+document.getElementById('delete-button').addEventListener('click', deleteUserBooking)
 const username = document.getElementById('username-input')
 const password = document.getElementById('password-input')
 let loginPage = document.querySelector('.main-page')
@@ -51,7 +40,6 @@ function startUp() {
     })
     .then(() => {
       instantiateClasses();
-    //   populatePage();
     })
     .catch((err) => console.log(err.message));
 }
@@ -73,10 +61,8 @@ function findGuestByNameSearch() {
 }
 
 function loadUserPage() {
-//   console.log(username.value)
   user = new User(username.value, password.value)
   let loginCredentials = user.login(username.value, password.value)
-//   console.log(loginCredentials)
   if (loginCredentials === true) {
     instantiateManagerInfo()
     loginPage.classList.add('hidden')
@@ -105,6 +91,7 @@ function instantiateGuest(username, password) {
   const currentUser = data.guestData.find(guest => guest.id === num)
   console.log(currentUser)
   guest = new Guest(currentUser, username, password)
+  hotel = new Hotel()
   console.log(guest)
   getAllGuestInfo(currentUser, guest)
 }
@@ -117,4 +104,26 @@ function getAllGuestInfo(currentUser, guest) {
   guest.getTotalMoneyGuestHasSpent(data.bookingsData, data.roomsData)
   domUpdate.populateGuestPageWithInfo(guest, data.roomsData)
   domUpdate.displayRooms(data.roomsData)
+}
+
+function addBooking() {
+  let selectedDate = document.getElementById('date-on-manager').value || '1994/10/01'
+  selectedDate = selectedDate.replace(/-/g, '/')
+  const userID = document.getElementById('user-id').value
+  const roomNum = document.getElementById('room-number').value
+  let postObj = {
+    "userID": parseFloat(userID),
+    "date": selectedDate,
+    "roomNumber": parseFloat(roomNum)
+  }
+  console.log(postObj)
+  postBooking(postObj)
+}
+
+function deleteUserBooking() {
+  const idInput = document.getElementById('booking-num-id').value
+  let deleteObj = {
+    'id': parseFloat(idInput)
+  }
+  deleteBooking(deleteObj)
 }
