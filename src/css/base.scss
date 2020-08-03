@@ -1,6 +1,9 @@
 @import "variables";
 @import "mixins";
 
+
+//main styling
+
 html {
   background-image: url('https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80');
   background-size: cover;
@@ -79,21 +82,12 @@ header {
   background-image: url(https://image.flaticon.com/icons/svg/3075/3075439.svg);
 }
 
-p,
-h3 {
-  margin-left: 20px;
-}
-
 #users {
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: center;
   background-color: rgba(255, 255, 255, 0.7); 
   height: 70%;
   width: 100%;
   border-radius: 30px;
   overflow: scroll;
-  // justify-content: center;
 }
 
 .booking-card-manager {
@@ -118,6 +112,20 @@ aside {
   margin: 20px;
 }
 
+.guest-left,
+.manage-bookings {
+  height: 425px;
+  width: 40%
+}
+
+// text
+
+p,
+h3 {
+  margin-left: 20px;
+}
+
+
 h1 {
   padding: 30px;
   margin: 10px;
@@ -128,11 +136,6 @@ h2 {
   text-align: center;
 }
 
-.guest-left,
-.manage-bookings {
-  height: 425px;
-  width: 40%
-}
 
 .booking-input,
 .user-bookings {
@@ -163,30 +166,34 @@ h2 {
   border: 1px solid black
 }
 
-.book-delete {
-  // display: flex;
-  // flex-direction: row;
-  // flex-wrap: wrap;
-  // justify-content: space-between;
+// .book-delete {
+//   width: 80%;
+//   height: 40%;
+//   background-color: rgba(255, 255, 255, 0.7); 
+//   border-radius: 20px;
+// }
+
+.booking-area {
   width: 80%;
-  height: 40%;
+  height: 60%;
   background-color: rgba(255, 255, 255, 0.7); 
   border-radius: 20px;
-  // align-self: center;
-  // align-content: center;
 }
 
-// .manage {
-//   align-self: center!important;
-// }
+.delete-booking-area {
+  width: 80%;
+  height: 20%;
+  background-color: rgba(255, 255, 255, 0.7); 
+  border-radius: 20px;
+}
 
 #user-id,
 #room-number {
   width: 80px;
 }
 
-#booking-id {
-  width: 200px;
+#booking-num-id {
+  width: 150px;
 }
 
 aside {
@@ -195,10 +202,19 @@ aside {
   width: 25%;
 }
 
+// buttons
+
 .search-users-button {
   height: 40px;
   // border: 3px solid rgb(36, 147, 43);
   border-radius: 30px;
+}
+
+#back-button {
+  height: 30px;
+  border-radius: 15px;
+  margin-left: 20px;
+  margin-top: 5px;
 }
 
 #log-out-button {

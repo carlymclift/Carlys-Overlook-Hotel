@@ -34,26 +34,37 @@ class DomUpdates {
     document.getElementById('occupancy')
       .innerText = `${hotel.occupancy}%`
 
-    let alphabetizedNames = guests.map(guest => guest.name).sort().reverse()
-    // let alphabetizedNames = guestNames.sort().reverse()
-    alphabetizedNames.forEach(name => {
-      document.getElementById('users')
-        .insertAdjacentHTML('afterbegin', `
-              <p>${name}</p><hr>`)
-    })
+    this.populateEachGuestIntoGuestSection(guests)
   } 
 
-  displayUserSearchedFor(searchedUser, searchedUserBookings, rooms) {
+  populateEachGuestIntoGuestSection(guests) {
+    let alphabetizedNames = guests.map(guest => guest.name).sort().reverse()
+    // let alphabetizedNames = guestNames.sort().reverse()
+    guests.forEach(guest => {
+      alphabetizedNames.forEach(name => {
+        document.getElementById('users')
+          .insertAdjacentHTML('afterbegin', `
+        <p>${name}</p>
+        <p>user id #: ${guest.id}<hr>`)
+      })
+    })
+  }
+
+  displayUserSearchedFor(searchedUser, searchedUserBookings, rooms, guests) {
     let userArea = document.getElementById('users')
     userArea.innerHTML = ""
     userArea.insertAdjacentHTML('afterBegin', `
-        <h3>${searchedUser.name}</h3>
-        <p>Total spent: $${searchedUser.totalSpent.toFixed(2)}</p>
-        <p>Number of stays: ${searchedUserBookings.length}</p>
-        <p>Most recent stay: ${searchedUserBookings[0].date}<br>
-        in room number ${searchedUserBookings[0].roomNumber}</p>
-        <h3>Stay history:</h3>`)
+    <button id="back-button">&#11013back</button>
+    <h3>${searchedUser.name}</h3>
+    <p>user id #: ${searchedUser.id}</p>
+    <p>Total spent: $${searchedUser.totalSpent.toFixed(2)}</p>
+    <p>Number of stays: ${searchedUserBookings.length}</p>
+    <p>Most recent stay: ${searchedUserBookings[0].date}<br>
+    in room number ${searchedUserBookings[0].roomNumber}</p>
+    <h3>Stay history:</h3>`)
     this.displaySearchedUsersBookings(userArea, searchedUserBookings, rooms)
+    
+    document.getElementById('back-button').addEventListener('click', () => this.populateEachGuestIntoGuestSection(guests))
   }
 
   displaySearchedUsersBookings(element, bookings, rooms) {
@@ -81,6 +92,8 @@ class DomUpdates {
         </div>`)  
     })
   }
+
+ 
 }
 
 export default DomUpdates
