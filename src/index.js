@@ -57,7 +57,7 @@ function findGuestByNameSearch() {
   let guestBookings = guest.getAllGuestBookings(data.bookingsData)
   let sortedBookings = guestBookings.sort((a, b) => new Date(b.date) - new Date(a.date))
   guest.getTotalMoneyGuestHasSpent(data.bookingsData, data.roomsData)
-  domUpdate.displayUserSearchedFor(guest, sortedBookings, data.roomsData)
+  domUpdate.displayUserSearchedFor(guest, sortedBookings, data.roomsData, data.guestData)
 }
 
 function loadUserPage() {
