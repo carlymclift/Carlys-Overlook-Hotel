@@ -38,15 +38,11 @@ class DomUpdates {
   } 
 
   populateEachGuestIntoGuestSection(guests) {
-    let alphabetizedNames = guests.map(guest => guest.name).sort().reverse()
-    // let alphabetizedNames = guestNames.sort().reverse()
     guests.forEach(guest => {
-      alphabetizedNames.forEach(name => {
-        document.getElementById('users')
-          .insertAdjacentHTML('afterbegin', `
-        <p>${name}</p>
+      document.getElementById('users')
+        .insertAdjacentHTML('afterbegin', `
+        <p>${guest.name}</p>
         <p>user id #: ${guest.id}<hr>`)
-      })
     })
   }
 
@@ -59,12 +55,24 @@ class DomUpdates {
     <p>user id #: ${searchedUser.id}</p>
     <p>Total spent: $${searchedUser.totalSpent.toFixed(2)}</p>
     <p>Number of stays: ${searchedUserBookings.length}</p>
-    <p>Most recent stay: ${searchedUserBookings[0].date}<br>
+    <p>Most recent booking: ${searchedUserBookings[0].date}<br>
     in room number ${searchedUserBookings[0].roomNumber}</p>
     <h3>Stay history:</h3>`)
     this.displaySearchedUsersBookings(userArea, searchedUserBookings, rooms)
     
     document.getElementById('back-button').addEventListener('click', () => this.populateEachGuestIntoGuestSection(guests))
+  }
+
+  populateAvailableRoomsForBooking(rooms) {
+    let roomArea = document.getElementById('available-rooms-manager-post')
+    roomArea.innerHTML = ""
+    rooms.forEach(room => {
+      roomArea.innerHTML += `
+      <div class="av-rooms-post-card" id=${room.number}>
+      <p>Room #${room.number}<br>${room.numBeds} beds<br>$${room.costPerNight}/night</p>
+      </div>
+      `
+    })
   }
 
   displaySearchedUsersBookings(element, bookings, rooms) {
@@ -81,15 +89,16 @@ class DomUpdates {
 
   displayRooms(rooms) {
     let orderedRooms = rooms.reverse()
+    let roomArea = document.getElementById('available-rooms-cards')
+    roomArea.innerHTML = ""
     orderedRooms.forEach(room => {
-      document.getElementById('available-rooms-cards')
-        .insertAdjacentHTML('afterbegin', `
-        <div class="room-card">
+      roomArea.innerHTML += `
+        <div class="room-card" id=${room.number}>
             <p>Room #${room.number}</p>
             <p>${room.roomType}</p>
             <p>${room.numBeds} ${room.bedSize}</p>
             <p>Cost/night: $${room.costPerNight}</p>
-        </div>`)  
+        </div>`  
     })
   }
 
