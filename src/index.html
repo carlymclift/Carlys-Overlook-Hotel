@@ -14,15 +14,21 @@
         <div class='login-field'>
         <label>Username:
             <br />
-              <input type="test" id="username-input" name="user-name" value=""></label>
+              <input type="text" id="username-input" name="user-name" ></label>
             <br />
         <label>Password:
             <br />
-              <input type="text" id="password-input" name="password" value=""></label>
+              <input id="password-input" type="text" name="password" ></label>
             <br />
             <button id="login-button" class='submit-button'>Login</button>
         </div>
       </div>
+    </section>
+    <section id="pop-up-section" class="pop-up-section hidden">
+      <div class="pop-up-box" id="pop-up-box">
+        <h2>Confirm your booking</h2>
+      </div>
+
     </section>
     <section id='guest-sec' class="hidden">
       <header>
@@ -96,7 +102,6 @@
             </section>
             
             <section class="manage-bookings">
-              <!-- <h3>Manage Bookings:</h3> -->
               <div class="booking-area">
                 <h3>Book Room:</h3>
                 <label for="date">Date:</label>

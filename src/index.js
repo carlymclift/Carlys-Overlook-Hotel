@@ -22,6 +22,7 @@ document.getElementById('login-button').addEventListener('click', loadUserPage)
 document.getElementById('search-users-button').addEventListener('click', findGuestByNameSearch)
 document.getElementById('book-button').addEventListener('click', addBooking)
 document.getElementById('delete-button').addEventListener('click', deleteUserBooking)
+// document.getElementById('book-this-room-button').addEventListener('click', openBookingConfirmation)
 document.querySelector('.date-search').addEventListener('click', () => getRoomsForSelectedDate('date-on-manager', managerRoomsArea))
 document.querySelector('.search-button-user-page').addEventListener('click', () => getRoomsForSelectedDate('date-on-user', userRoomsArea))
 document.querySelector('.filter-section').addEventListener('click', () => {
@@ -29,12 +30,19 @@ document.querySelector('.filter-section').addEventListener('click', () => {
   getCurrentCardsDisplayed();
 })
 
+// document.getElementById('book-this-room-button').addEventListener('click', openBookingConfirmation)
+document.getElementById('available-rooms-cards').addEventListener('click', targetButtonAndID)
+document.getElementById('pop-up-box').addEventListener('click', targetConfirmationButtons)
+
 const username = document.getElementById('username-input')
 const password = document.getElementById('password-input')
 let loginPage = document.querySelector('.main-page')
 let managerPage = document.getElementById('manager-sec')
 let guestPage = document.getElementById('guest-sec')
 const guestNameSearch = document.getElementById('search-input')
+const popUpConfirmation = document.getElementById('pop-up-section')
+const dateSelectedByUser = document.getElementById('date-on-user')
+// selectRoomButton.addEventListener('click', openBookingConfirmation)
 
 const data = {
   guestData: null,
@@ -42,25 +50,7 @@ const data = {
   roomsData: null
 };
 
-function getRoomsForSelectedDate(elementID, secID) {
-  let selectedDate = document.getElementById(elementID).value
 
-  if (!selectedDate) {
-    alert('Please select date to see the rooms available.')
-  } else {
-    selectedDate = selectedDate.replace(/-/g, '/')
-    let allAvRooms = hotel.findAllAvailableRoomsByDate(selectedDate, data.roomsData, data.bookingsData)
-    let noDuplicates = [...new Set(allAvRooms)]
-
-    if (secID === userRoomsArea) {
-      console.log(noDuplicates)
-      domUpdate.displayRooms(noDuplicates)
-    } else {
-      domUpdate.populateAvailableRoomsForBooking(noDuplicates)
-    }
-
-  }
-}
 
 function startUp() {
   fetchData()
@@ -107,6 +97,50 @@ function loadUserPage() {
   }
 }
 
+function targetButtonAndID(event) {
+  if (event.target.classList.contains('book-this-room-button')) {
+    // console.log(event.target.classList.contains('book-this-room-button'))
+    // console.log(Number(event.target.parentNode.dataset.id))
+    openBookingConfirmation(event)
+  }
+}
+
+function targetConfirmationButtons(event) {
+  if (event.target.classList.contains('cancel-booking')) {
+    popUpConfirmation.classList.add('hidden')
+  }
+  if (event.target.classList.contains('confirm-booking')) {
+    addBookingByUser()
+    popUpConfirmation.classList.add('hidden')
+  }
+}
+
+function addBookingByUser() {
+  let formattedDate = dateSelectedByUser.value.replace(/-/g, '/')
+  let element = document.getElementById('number-element')
+  let roomString = element.innerText.split('#')[1]
+
+  let postObj = {
+    "userID": guest.id,
+    "date": formattedDate,
+    "roomNumber": parseFloat(roomString)
+  }
+  postBooking(postObj)
+}
+
+function openBookingConfirmation(event) {
+  let idNum = parseInt(event.target.parentNode.id)
+  let roomMatchesNum = data.roomsData.find(room => room.number === idNum)
+  console.log(roomMatchesNum)
+
+  if (!dateSelectedByUser.value) {
+    alert('Please select date to book')
+  } else {
+    popUpConfirmation.classList.remove('hidden')
+    domUpdate.displayedConfirmation(roomMatchesNum, dateSelectedByUser.value)
+  }
+}
+
 function instantiateManagerInfo() {
   hotel = new Hotel()
   manager = new Manager(username.value, password.value)
@@ -118,8 +152,6 @@ function instantiateManagerInfo() {
   domUpdate.populateAvailableRoomsForBooking(avRooms)
   domUpdate.populateManagerPageInfo(hotel, data.guestData)
 }
-
-
 
 function instantiateGuest(username, password) {
   let userID = username.split('r')[1]
@@ -142,6 +174,10 @@ function getAllGuestInfo(guest) {
 
   let availRooms = hotel.findAllAvailableRoomsByDate('2020/01/10', data.roomsData, data.bookingsData)
   domUpdate.displayRooms(availRooms)
+  // document.getElementById('book-this-room-button').addEventListener('click', openBookingConfirmation)
+  // document.querySelectorAll('.book-this-room-button').addEventListener('click', openBookingConfirmation)
+  // document.querySelector('room-card').addEventListener('click', openBookingConfirmation)
+
 }
 
 function addBooking() {
@@ -179,12 +215,10 @@ function getCurrentCardsDisplayed() {
     })
     return roomsFound
   })
-
   filterButtonConditionals(currentlyDisplayedRoomsToFilter)
 }
 
   function filterButtonConditionals(displayedCards) {
-    
   if (event.target.classList.contains('suite')) {
     let roomsToDisplay = guest.filterRoomsByType(displayedCards, 'suite')
     getRoomsForSelectedDate('date-on-user', userRoomsArea)
@@ -202,4 +236,27 @@ function getCurrentCardsDisplayed() {
     let roomsToDisplay = guest.filterRoomsByType(displayedCards, 'junior suite')
     domUpdate.displayRooms(roomsToDisplay)
   }
+  document.querySelectorAll('.book-this-room-button').addEventListener('click', openBookingConfirmation)
+
 }
+
+function getRoomsForSelectedDate(elementID, secID) {
+  let selectedDate = document.getElementById(elementID).value
+
+  if (!selectedDate) {
+    alert('Please select date to see the rooms available.')
+  } else {
+    selectedDate = selectedDate.replace(/-/g, '/')
+    let allAvRooms = hotel.findAllAvailableRoomsByDate(selectedDate, data.roomsData, data.bookingsData)
+    let noDuplicates = [...new Set(allAvRooms)]
+
+    if (secID === userRoomsArea) {
+      console.log(noDuplicates)
+      domUpdate.displayRooms(noDuplicates)
+    } else {
+      domUpdate.populateAvailableRoomsForBooking(noDuplicates)
+    }
+  }
+
+}
+

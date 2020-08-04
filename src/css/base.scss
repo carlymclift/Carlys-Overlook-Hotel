@@ -59,7 +59,7 @@ header {
   // opacity: 0.5;
   overflow: auto;
   border-radius: 20px;
-  border: 2px solid rgb(29, 88, 252);
+  border: 2px solid rgb(255, 3, 3);
   // @extend .book-room-manager;
 }
 
@@ -84,9 +84,9 @@ header {
 
 #users {
   background-color: rgba(255, 255, 255, 0.7); 
-  height: 70%;
+  height: 90%;
   width: 100%;
-  border-radius: 30px;
+  border-radius: 10px;
   overflow: auto;
 }
 
@@ -109,13 +109,49 @@ aside {
   justify-content: space-between;
   background-color: rgba(255, 137, 104, 0.7); 
   border-radius: 10px;
-  margin: 20px;
+  margin: 30px;
+  // height: 500px;
 }
 
 .guest-left,
 .manage-bookings {
   height: 425px;
   width: 40%
+}
+
+.pop-up-section {
+  // height: 100vh;
+  // width: 100%;
+  background-color: rgba(0, 0, 0, 0.7); 
+  // z-index: 99 !important;
+  // position: absolute;
+  position:fixed;
+    width:100%;
+    height:100%;
+    top:0px;
+    left:0px;
+    z-index:1000;
+}
+
+.pop-up-box {
+  // align-self: center;
+  // height: 40%;
+  // width: 50%;
+  // background-color: white;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  position: absolute;
+  width: 600px;
+  height: 400px;
+  z-index: 15;
+  top: 50%;
+  left: 50%;
+  margin: -200px 0 0 -300px;
+  background: white;
+  border-radius: 20px;
+  // align-items: center;
+  
 }
 
 // text
@@ -125,6 +161,9 @@ h3 {
   margin-left: 20px;
 }
 
+.confirm-elements {
+  margin-left: 30%;
+}
 
 h1 {
   padding: 30px;
@@ -147,6 +186,10 @@ h5 {
   flex-direction: row;
   height: 40%;
   justify-content: space-evenly;
+}
+
+.user-bookings {
+  height: 460px;
 }
 
 .search-users-sec {
@@ -179,25 +222,27 @@ h5 {
 
 .booking-area {
   width: 100%;
-  height: 60%;
+  height: 80%;
   background-color: rgba(255, 255, 255, 0.7); 
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
 .delete-booking-area {
   width: 100%;
   height: 20%;
   background-color: rgba(255, 255, 255, 0.7); 
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
 #user-id,
 #room-number {
   width: 80px;
+  margin-left: 10px;
 }
 
 #booking-num-id {
   width: 150px;
+  margin-left: 20px;
 }
 
 aside {
@@ -208,9 +253,9 @@ aside {
 
 // buttons
 
-.search-users-button {
+#search-users-button {
   height: 40px;
-  // border: 3px solid rgb(36, 147, 43);
+  // border-radius: 15px;
   border-radius: 30px;
 }
 
@@ -222,20 +267,52 @@ aside {
   margin-top: 10px;
 }
 
+#book-button,
+.date-search,
+#delete-button {
+  border-radius: 15px;
+  height: 21px;
+}
+
+#delete-button {
+  color: red
+}
+
+#cancel-booking {
+  height: 30px;
+  border-radius: 15px;
+  margin-top: 40px;
+  margin-left: 35%;
+}
+
+#confirm-booking {
+  height: 30px;
+  border-radius: 15px;
+  margin-top: 40px;
+  margin-left: 25px;
+}
+
 // .booking-card {
 //   margin-top: 20px;
 // }
 
 #log-out-button {
   margin: 50px;
-  @extend .search-users-button;
+  @extend #search-users-button;
 }
 
 .filter-button {
-  @extend .search-users-button;
+  @extend #search-users-button;
   width: 100px;
   margin-bottom: 20px;
   align-self: center;
+}
+
+.book-this-room-button {
+  margin-left: 30px;
+  margin-bottom: 10px;
+  height: 30px;
+  border-radius: 15px;
 }
 
 .search-button-user-page {
@@ -314,10 +391,10 @@ input {
 
 #available-rooms-manager-post {
   display: flex;
-  flex-direction: row;
+  // flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
-  height: 40%;
+  height: 55%;
   width: 100%;
   background-color:rgba(255, 255, 255, 0.7);
   overflow: auto;
@@ -326,7 +403,7 @@ input {
 
 .av-rooms-post-card {
   // display: flex;
-  // flex-direction: row;
+  // flex-direction: column;
   // justify-content: space-between;
   border: 2px solid black;
   border-radius: 5px;
@@ -345,13 +422,17 @@ input {
 }
 
 .hotel-info-sec {
+  background-color: rgba(108, 221, 224, 0.7);
   display: flex;
   flex-direction: column;
   justify-content: start;
+  // justify-content: s;
+  height: 475px;
 }
 
 .manager-left-text {
   font-size: 15px;
+  // padding: 15px;
 }
 
 .manager-info {
@@ -363,6 +444,11 @@ input {
 .manage-users {
   background-color: rgba(104, 164, 255, 0.7); 
   width: 60%;
-  border-radius: 30px;
+  height: 550px;
+  border-radius: 15px;
+}
+
+.book-trip-sec {
+  background-color: rgba(226, 105, 105, 0.7); 
 }
 
