@@ -9,48 +9,50 @@ import fetchData from './fetchAllData';
 import DomUpdates from './DomUpdates';
 import postBooking from './postBooking';
 import deleteBooking from './deleteBooking';
-
-let manager, guest, user, domUpdate, hotel
-
-
-
-window.onload = startUp();
+import moment from 'moment';
 
 const managerRoomsArea = document.getElementById('available-rooms-manager-post')
 const userRoomsArea = document.getElementById('available-rooms-cards')
-document.getElementById('login-button').addEventListener('click', loadUserPage)
-document.getElementById('search-users-button').addEventListener('click', findGuestByNameSearch)
-document.getElementById('book-button').addEventListener('click', addBooking)
-document.getElementById('delete-button').addEventListener('click', deleteUserBooking)
-// document.getElementById('book-this-room-button').addEventListener('click', openBookingConfirmation)
-document.querySelector('.date-search').addEventListener('click', () => getRoomsForSelectedDate('date-on-manager', managerRoomsArea))
-document.querySelector('.search-button-user-page').addEventListener('click', () => getRoomsForSelectedDate('date-on-user', userRoomsArea))
-document.querySelector('.filter-section').addEventListener('click', () => {
-  getRoomsForSelectedDate('date-on-user', userRoomsArea);
-  getCurrentCardsDisplayed();
-})
-
-// document.getElementById('book-this-room-button').addEventListener('click', openBookingConfirmation)
-document.getElementById('available-rooms-cards').addEventListener('click', targetButtonAndID)
-document.getElementById('pop-up-box').addEventListener('click', targetConfirmationButtons)
-
 const username = document.getElementById('username-input')
 const password = document.getElementById('password-input')
-let loginPage = document.querySelector('.main-page')
-let managerPage = document.getElementById('manager-sec')
-let guestPage = document.getElementById('guest-sec')
+const loginPage = document.querySelector('.main-page')
+const managerPage = document.getElementById('manager-sec')
+const guestPage = document.getElementById('guest-sec')
 const guestNameSearch = document.getElementById('search-input')
 const popUpConfirmation = document.getElementById('pop-up-section')
 const dateSelectedByUser = document.getElementById('date-on-user')
-// selectRoomButton.addEventListener('click', openBookingConfirmation)
-
+const dateSelectedByManager = document.getElementById('date-on-manager')
+const currentDate = moment().format('YYYY/MM/DD')
+let manager, guest, user, domUpdate, hotel
 const data = {
   guestData: null,
   bookingsData: null,
   roomsData: null
 };
 
+document.getElementById('login-button')
+  .addEventListener('click', loadUserPage)
+document.getElementById('search-users-button')
+  .addEventListener('click', findGuestByNameSearch)
+document.getElementById('book-button')
+  .addEventListener('click', addBooking)
+document.getElementById('delete-button')
+  .addEventListener('click', deleteUserBooking)
+document.querySelector('.date-search')
+  .addEventListener('click', () => getRoomsForSelectedDate('date-on-manager', managerRoomsArea))
+document.querySelector('.search-button-user-page')
+  .addEventListener('click', () => getRoomsForSelectedDate('date-on-user', userRoomsArea))
+document.getElementById('available-rooms-cards')
+  .addEventListener('click', targetButtonAndID)
+document.getElementById('pop-up-box')
+  .addEventListener('click', targetConfirmationButtons)
+document.querySelector('.filter-section')
+  .addEventListener('click', () => {
+    getRoomsForSelectedDate('date-on-user', userRoomsArea);
+    getCurrentCardsDisplayed();
+  })
 
+window.onload = startUp();
 
 function startUp() {
   fetchData()
@@ -60,7 +62,8 @@ function startUp() {
       data.roomsData = allData.roomsData;
     })
     .then(() => {
-      instantiateClasses();
+      instantiateClasses()
+      setCalenderLimits()
     })
     .catch((err) => console.log(err.message));
 }
@@ -69,16 +72,20 @@ function instantiateClasses() {
   domUpdate = new DomUpdates()
 }
 
+function setCalenderLimits() {
+  let reformattedDate = currentDate.replace(/\//g, '-')
+  dateSelectedByManager.min = reformattedDate
+  dateSelectedByUser.min = reformattedDate
+}
+
 function findGuestByNameSearch() {
   let foundUser = manager.searchGuestsByName(guestNameSearch.value, data.guestData)
   guestNameSearch.value = ''
   guest = new Guest(foundUser, `customer${foundUser.id}`, 'overlook2020')
-
   let guestBookings = guest.getAllGuestBookings(data.bookingsData)
   let sortedBookings = guestBookings.sort((a, b) => new Date(b.date) - new Date(a.date))
   guest.getTotalMoneyGuestHasSpent(data.bookingsData, data.roomsData)
   domUpdate.displayUserSearchedFor(guest, sortedBookings, data.roomsData, data.guestData)
-
 }
 
 function loadUserPage() {
@@ -97,11 +104,48 @@ function loadUserPage() {
   }
 }
 
+function instantiateManagerInfo() {
+  hotel = new Hotel()
+  manager = new Manager(username.value, password.value)
+  hotel.findAllAvailableRoomsByDate(currentDate, data.roomsData, data.bookingsData)
+  hotel.calculateTotalRevenueForDate(currentDate, data.roomsData, data.bookingsData)
+  hotel.findPercentOccupiedRoomsForDate(currentDate, data.bookingsData).toFixed()
+  let avRooms = hotel.availableRooms
+  domUpdate.populateAvailableRoomsForBooking(avRooms)
+  domUpdate.populateManagerPageInfo(hotel, data.guestData)
+}
+
+function instantiateGuest(username, password) {
+  let userID = username.split('r')[1]
+  const num = parseInt(userID)
+  const currentUser = data.guestData.find(guest => guest.id === num)
+  guest = new Guest(currentUser, username, password)
+  hotel = new Hotel()
+  getAllGuestInfo(guest)
+}
+
+function getAllGuestInfo(guest) {
+  guest.getAllGuestBookings(data.bookingsData)
+  guest.getTotalMoneyGuestHasSpent(data.bookingsData, data.roomsData)
+  domUpdate.populateGuestPageWithInfo(guest, data.roomsData)
+  let availRooms = hotel.findAllAvailableRoomsByDate(currentDate, data.roomsData, data.bookingsData)
+  domUpdate.displayRooms(availRooms)
+}
+
 function targetButtonAndID(event) {
   if (event.target.classList.contains('book-this-room-button')) {
-    // console.log(event.target.classList.contains('book-this-room-button'))
-    // console.log(Number(event.target.parentNode.dataset.id))
     openBookingConfirmation(event)
+  }
+}
+
+function openBookingConfirmation(event) {
+  let idNum = parseInt(event.target.parentNode.id)
+  let roomMatchesNum = data.roomsData.find(room => room.number === idNum)
+  if (!dateSelectedByUser.value) {
+    alert('Please select date to book')
+  } else {
+    popUpConfirmation.classList.remove('hidden')
+    domUpdate.displayedConfirmation(roomMatchesNum, dateSelectedByUser.value)
   }
 }
 
@@ -128,58 +172,6 @@ function addBookingByUser() {
   postBooking(postObj)
 }
 
-function openBookingConfirmation(event) {
-  let idNum = parseInt(event.target.parentNode.id)
-  let roomMatchesNum = data.roomsData.find(room => room.number === idNum)
-  console.log(roomMatchesNum)
-
-  if (!dateSelectedByUser.value) {
-    alert('Please select date to book')
-  } else {
-    popUpConfirmation.classList.remove('hidden')
-    domUpdate.displayedConfirmation(roomMatchesNum, dateSelectedByUser.value)
-  }
-}
-
-function instantiateManagerInfo() {
-  hotel = new Hotel()
-  manager = new Manager(username.value, password.value)
-  hotel.findAllAvailableRoomsByDate('2020/01/10', data.roomsData, data.bookingsData)
-  hotel.calculateTotalRevenueForDate('2020/01/10', data.roomsData, data.bookingsData)
-  hotel.findPercentOccupiedRoomsForDate('2020/01/10', data.bookingsData)
-  console.log(hotel)
-  let avRooms = hotel.availableRooms
-  domUpdate.populateAvailableRoomsForBooking(avRooms)
-  domUpdate.populateManagerPageInfo(hotel, data.guestData)
-}
-
-function instantiateGuest(username, password) {
-  let userID = username.split('r')[1]
-  const num = parseInt(userID)
-  const currentUser = data.guestData.find(guest => guest.id === num)
-  console.log(currentUser)
-  guest = new Guest(currentUser, username, password)
-  hotel = new Hotel()
-  console.log(guest)
-  getAllGuestInfo(guest)
-}
-
-function getAllGuestInfo(guest) {
-  let guestBookings = guest.getAllGuestBookings(data.bookingsData)
-  // console.log('b', guestBookings)
-  let sortedBookings = guestBookings.sort((a, b) => new Date(a.date) - new Date(b.date))
-  console.log('c', sortedBookings)
-  guest.getTotalMoneyGuestHasSpent(data.bookingsData, data.roomsData)
-  domUpdate.populateGuestPageWithInfo(guest, data.roomsData)
-
-  let availRooms = hotel.findAllAvailableRoomsByDate('2020/01/10', data.roomsData, data.bookingsData)
-  domUpdate.displayRooms(availRooms)
-  // document.getElementById('book-this-room-button').addEventListener('click', openBookingConfirmation)
-  // document.querySelectorAll('.book-this-room-button').addEventListener('click', openBookingConfirmation)
-  // document.querySelector('room-card').addEventListener('click', openBookingConfirmation)
-
-}
-
 function addBooking() {
   let selectedDate = document.getElementById('date-on-manager').value || '1994/10/01'
   selectedDate = selectedDate.replace(/-/g, '/')
@@ -190,7 +182,6 @@ function addBooking() {
     "date": selectedDate,
     "roomNumber": parseFloat(roomNum)
   }
-  console.log(postObj)
   postBooking(postObj)
 }
 
@@ -202,11 +193,26 @@ function deleteUserBooking() {
   deleteBooking(deleteObj)
 }
 
+function getRoomsForSelectedDate(elementID, secID) {
+  let selectedDate = document.getElementById(elementID).value
+  if (!selectedDate) {
+    alert('Please select date to see the rooms available.')
+  } else {
+    selectedDate = selectedDate.replace(/-/g, '/')
+    let allAvRooms = hotel.findAllAvailableRoomsByDate(selectedDate, data.roomsData, data.bookingsData)
+    let noDuplicates = [...new Set(allAvRooms)]
+    if (secID === userRoomsArea) {
+      domUpdate.displayRooms(noDuplicates)
+    } else {
+      domUpdate.populateAvailableRoomsForBooking(noDuplicates)
+    }
+  }
+}
+
 function getCurrentCardsDisplayed() {
   let roomElements = document.getElementsByClassName('room-card')
   let values = Object.values(roomElements)
   let numbersOfCards = values.map(item => parseInt(item.id))
-
   let currentlyDisplayedRoomsToFilter = numbersOfCards.map(num => {
     let roomsFound = data.roomsData.find(room => {
       if (num === room.number) {
@@ -218,10 +224,9 @@ function getCurrentCardsDisplayed() {
   filterButtonConditionals(currentlyDisplayedRoomsToFilter)
 }
 
-  function filterButtonConditionals(displayedCards) {
+function filterButtonConditionals(displayedCards) {
   if (event.target.classList.contains('suite')) {
     let roomsToDisplay = guest.filterRoomsByType(displayedCards, 'suite')
-    getRoomsForSelectedDate('date-on-user', userRoomsArea)
     domUpdate.displayRooms(roomsToDisplay)
   }
   if (event.target.classList.contains('single')) {
@@ -236,27 +241,4 @@ function getCurrentCardsDisplayed() {
     let roomsToDisplay = guest.filterRoomsByType(displayedCards, 'junior suite')
     domUpdate.displayRooms(roomsToDisplay)
   }
-  document.querySelectorAll('.book-this-room-button').addEventListener('click', openBookingConfirmation)
-
 }
-
-function getRoomsForSelectedDate(elementID, secID) {
-  let selectedDate = document.getElementById(elementID).value
-
-  if (!selectedDate) {
-    alert('Please select date to see the rooms available.')
-  } else {
-    selectedDate = selectedDate.replace(/-/g, '/')
-    let allAvRooms = hotel.findAllAvailableRoomsByDate(selectedDate, data.roomsData, data.bookingsData)
-    let noDuplicates = [...new Set(allAvRooms)]
-
-    if (secID === userRoomsArea) {
-      console.log(noDuplicates)
-      domUpdate.displayRooms(noDuplicates)
-    } else {
-      domUpdate.populateAvailableRoomsForBooking(noDuplicates)
-    }
-  }
-
-}
-

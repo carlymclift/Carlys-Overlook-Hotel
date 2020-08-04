@@ -1,11 +1,6 @@
 class DomUpdates {
 
-    // changeInnerTextID(id, text) {
-    //     document.getElementById(id).innerText = text;
-    //   }
-
   populateGuestPageWithInfo(currentUser, rooms) {
-    // this.changeInnerTextID('greet-on-guest-page', `Hello, ${currentUser.firstName}!`);
     document.getElementById('greet-on-guest-page')
       .innerText = `Hello, ${currentUser.firstName}!`
 
@@ -40,7 +35,7 @@ class DomUpdates {
   populateEachGuestIntoGuestSection(guests) {
     guests.forEach(guest => {
       document.getElementById('users')
-        .insertAdjacentHTML('afterbegin', `
+        .insertAdjacentHTML('afterBegin', `
         <p>${guest.name}</p>
         <p>user id #: ${guest.id}<hr>`)
     })
@@ -58,9 +53,10 @@ class DomUpdates {
     <p>Most recent booking: ${searchedUserBookings[0].date}<br>
     in room number ${searchedUserBookings[0].roomNumber}</p>
     <h3>Stay history:</h3>`)
-    this.displaySearchedUsersBookings(userArea, searchedUserBookings, rooms)
-    
-    document.getElementById('back-button').addEventListener('click', () => this.populateEachGuestIntoGuestSection(guests))
+
+    this.displaySearchedUsersBookings(userArea, searchedUserBookings, rooms)  
+    document.getElementById('back-button')
+      .addEventListener('click', () => this.populateEachGuestIntoGuestSection(guests))
   }
 
   populateAvailableRoomsForBooking(rooms) {
@@ -100,19 +96,13 @@ class DomUpdates {
             <p>Cost/night: $${room.costPerNight}</p>
             <button class="book-this-room-button">Book Room</button>
         </div>`  
-
-        // document.querySelectorAll('book-this-room-button').addEventListener('click', openBookingConfirmation)
     })
-    // document.getElementById('book-this-room-button')
-
   }
 
   displayedConfirmation(room, date) {
-    // document.getElementById('book')
-    //   .innerText = `Room #${room.number}`
     let confirmInfo = document.getElementById('pop-up-box')
     confirmInfo.innerHTML = ""
-      confirmInfo.innerHTML += `
+    confirmInfo.innerHTML += `
         <h2>Confirm your booking</h2>
         <div class="confirm-elements">
         <p>Reservation date: ${date}</p>
@@ -121,10 +111,8 @@ class DomUpdates {
         <p>The cost per night is $${room.costPerNight}</p>
         </div>
         <button id="cancel-booking" class="cancel-booking">Cancel</button>
-        <button id="confirm-booking" class="confirm-booking">Confirm</button>
-      `
+        <button id="confirm-booking" class="confirm-booking">Confirm</button>`
   }
- 
 }
 
 export default DomUpdates

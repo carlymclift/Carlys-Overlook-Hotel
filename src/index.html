@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <title>Travel Tracker</title>
+    <title>Overlook</title>
   </head>
   <body>
     <section class='main-page'> 
@@ -49,9 +49,9 @@
               <section>
                 <h3>Select date</h3>
                 <label for="date">Date:</label>
-                <input type="date" name="date" id="date-on-user" class="calender-user">
+                <input type="date" name="date" min="2020-08-01" id="date-on-user" class="calender-user">
                 <button class="search-button-user-page">search</button>
-                <h3>Filter by:</h3>
+                <h3 class="filter-by-header">Filter rooms by:</h3>
               </section>
               <section class="filter-section">
                 <button class="filter-button suite">Suite</button>
@@ -105,9 +105,9 @@
               <div class="booking-area">
                 <h3>Book Room:</h3>
                 <label for="date">Date:</label>
-                <input type="date" name="date" id="date-on-manager" class="calender manage">
+                <input type="date" name="date" min="2020-08-01" id="date-on-manager" class="calender manage">
                 <button class="date-search">Search</button>
-                <h5>Availble Rooms:</h5>
+                <h5>Available Rooms:</h5>
                 <section id="available-rooms-manager-post">
 
               </section>
