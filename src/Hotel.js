@@ -9,9 +9,10 @@ class Hotel {
   findAllAvailableRoomsByDate(date, rooms, bookings) {
     const bookingsOnDate = bookings.filter(booking => booking.date === date)
     const unavailableRooms = bookingsOnDate.map(booking => booking.roomNumber)
-    let avRooms = rooms.forEach(room => {
+    let avRooms = rooms.filter(room => {
       if (!unavailableRooms.includes(room.number)) {
         this.availableRooms.push(room)
+        return true
       }
     })
     return avRooms

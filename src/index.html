@@ -43,14 +43,15 @@
               <section>
                 <h3>Select date</h3>
                 <label for="date">Date:</label>
-                <input type="date" name="date" id="date" class="calender"><br>
+                <input type="date" name="date" id="date-on-user" class="calender-user">
+                <button class="search-button-user-page">search</button>
                 <h3>Filter by:</h3>
               </section>
               <section class="filter-section">
-                <button class="filter-button">Suite</button>
-                <button class="filter-button">Single</button>
-                <button class="filter-button">Junior Suite</button>
-                <button class="filter-button">Residential Suite</button>
+                <button class="filter-button suite">Suite</button>
+                <button class="filter-button single">Single</button>
+                <button class="filter-button junior">Junior Suite</button>
+                <button class="filter-button residential">Residential Suite</button>
               </section>
             </section>
             <section>
@@ -95,12 +96,18 @@
             </section>
             
             <section class="manage-bookings">
+              <!-- <h3>Manage Bookings:</h3> -->
               <div class="booking-area">
-                <h3>Book Guest:</h3>
+                <h3>Book Room:</h3>
                 <label for="date">Date:</label>
-                <input type="date" name="date" id="date-on-manager" class="calender manage"><br>
+                <input type="date" name="date" id="date-on-manager" class="calender manage">
+                <button class="date-search">Search</button>
+                <h5>Availble Rooms:</h5>
+                <section id="available-rooms-manager-post">
+
+              </section>
                 <input type="number" placeholder="user id" class="manage" name="user-id" id="user-id">
-                <input type="number" placeholder="room #"  class="manage" name="room-number" id="room-number"><br>
+                <input type="number" placeholder="room #"  class="manage" max=25 name="room-number" id="room-number">
                 <button id="book-button" class="manage">Book</button>
               </div>
               <div class="delete-booking-area">

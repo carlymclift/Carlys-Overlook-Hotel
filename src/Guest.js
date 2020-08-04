@@ -37,6 +37,10 @@ class Guest extends User {
     }, 0)
     this.totalSpent += moneySpent
   }
+
+  filterRoomsByType(rooms, type) {
+    return rooms.filter(room => room.roomType === type)
+  }
 }
 
 export default Guest
