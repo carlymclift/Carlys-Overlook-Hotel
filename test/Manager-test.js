@@ -39,4 +39,9 @@ describe('Manager', () => {
       "name": "Kennedi Emard"
     })
   })
+
+  it('Should throw an error is the input is not a string', () => {
+    let searchedUser = manager.searchGuestsByName(4, guestsSampleData)
+    expect(searchedUser).to.eql('please search a name')
+  })
 });

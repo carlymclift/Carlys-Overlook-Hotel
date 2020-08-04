@@ -6,11 +6,15 @@ class Manager extends User {
   }
 
   searchGuestsByName(input, users) {
-    return users.find(user => {
-      if ((user.name.toLowerCase()).includes(input.toLowerCase())) {
-        return user
-      }
-    })
+    if (typeof input !== 'string') {
+      return 'please search a name'
+    } else { 
+      return users.find(user => {
+        if ((user.name.toLowerCase()).includes(input.toLowerCase())) {
+          return user
+        }
+      })
+    }
   }
 }
 

@@ -53,6 +53,11 @@ describe('Hotel', () => {
     ])
   })
 
+  it('Should require the correct arguments to find available rooms', () => {
+    let badInvoke = hotel.findAllAvailableRoomsByDate('2020-01-10', roomsSampleData, bookingsSampleData)
+    expect(badInvoke).to.eql('You must select a valid date to search')
+  })
+
   it('Should be able to calculate the total revenue for todays date', () => {
     const rev = hotel.calculateTotalRevenueForDate('2020/01/10', roomsSampleData, bookingsSampleData)
     expect(hotel.todaysRevenue).to.eql('739.20')
