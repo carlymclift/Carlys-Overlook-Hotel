@@ -98,10 +98,32 @@ class DomUpdates {
             <p>${room.roomType}</p>
             <p>${room.numBeds} ${room.bedSize}</p>
             <p>Cost/night: $${room.costPerNight}</p>
+            <button class="book-this-room-button">Book Room</button>
         </div>`  
+
+        // document.querySelectorAll('book-this-room-button').addEventListener('click', openBookingConfirmation)
     })
+    // document.getElementById('book-this-room-button')
+
   }
 
+  displayedConfirmation(room, date) {
+    // document.getElementById('book')
+    //   .innerText = `Room #${room.number}`
+    let confirmInfo = document.getElementById('pop-up-box')
+    confirmInfo.innerHTML = ""
+      confirmInfo.innerHTML += `
+        <h2>Confirm your booking</h2>
+        <div class="confirm-elements">
+        <p>Reservation date: ${date}</p>
+        <p id="number-element">You'll be staying in room #${room.number}</p>
+        <p>${room.roomType}</p>
+        <p>The cost per night is $${room.costPerNight}</p>
+        </div>
+        <button id="cancel-booking" class="cancel-booking">Cancel</button>
+        <button id="confirm-booking" class="confirm-booking">Confirm</button>
+      `
+  }
  
 }
 
