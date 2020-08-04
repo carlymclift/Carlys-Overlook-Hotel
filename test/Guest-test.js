@@ -53,4 +53,23 @@ describe('Guest', () => {
     guest.getAllGuestBookings(bookingsSampleData)
     expect(guest.bookings).to.deep.eql([bookingsSampleData[4]])
   })
+
+  it('Should be able to filter the rooms by type', () => {
+    let filteredData = guest.filterRoomsByType(roomsSampleData, 'single room')
+    expect(filteredData).to.deep.eql([
+      roomsSampleData[2],
+      roomsSampleData[3],
+      roomsSampleData[4],
+      roomsSampleData[6],
+      roomsSampleData[8],
+      roomsSampleData[10],
+      roomsSampleData[11],
+      roomsSampleData[12],
+      roomsSampleData[15],
+      roomsSampleData[18],
+      roomsSampleData[20],
+      roomsSampleData[21],
+      roomsSampleData[24],
+    ])
+  })
 });
