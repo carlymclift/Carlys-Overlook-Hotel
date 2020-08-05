@@ -38,8 +38,8 @@ class Hotel {
   findPercentOccupiedRoomsForDate(date, bookings) {
     const bookingsOnDate = bookings.filter(booking => booking.date === date).length
     const percent = ((bookingsOnDate / this.rooms) * 100)
-    this.occupancy = percent
-    return percent
+    this.occupancy = percent.toFixed()
+    return percent.toFixed()
   }
 }
 

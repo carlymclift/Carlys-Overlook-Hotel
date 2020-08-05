@@ -1,0 +1,240 @@
+.hotel-info-sec {
+    background-color: $hotel-info-background;
+    margin: 30px;
+    height: 65vh;
+  }
+  
+  .booking-history-section {
+    @extend .hotel-info-sec;
+    background-color: $guest-history-background !important;
+  
+    .booking-history-list {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 50%;
+      background-color: $lighter-backgrounds;
+      overflow: auto;
+      border-radius: 10px;
+      border: 2px solid $guest-history-border
+    }
+  }
+  
+  .manage-users {
+    background-color: $manager-booking-background;
+    width: 65vw;
+    height: 70vh;
+    margin-top: 30px;
+  }
+  
+  .book-trip-sec {
+    @extend .manage-users;
+    background-color: $guest-booking-background;
+  }
+  
+  .booking-input,
+  .user-bookings {
+    @include flex-style(row, space-evenly)
+  }
+  
+  .filter-section {
+    @include flex-style(column, center);
+    margin-top: 20px;
+  }
+  
+  .booking-card {
+    background-color: white!important;
+    align-self: center;
+    box-shadow: $box-shadow;
+    margin-top: 10px;
+    height: 50%;
+    width: 70%;
+    border-radius: 5px;
+    opacity: 0.9 !important;
+  }
+  
+  .booking-area {
+    width: 100%;
+    height: 75%;
+    background-color: $lighter-backgrounds;
+    border: $manager-border;
+    border-radius: 10px;
+  }
+  
+  .delete-booking-area {
+    @extend .booking-area;
+    height: 25% !important;
+    margin-top: 5px;
+  }
+  
+  #available-rooms-manager-post {
+    @include flex-style(row, space-around);
+    flex-wrap: wrap;
+    height: 50%;
+    width: 100%;
+    background-color:rgba(255, 255, 255, 0.77);
+    overflow: auto;
+    align-self: center;
+  }
+  
+  #available-rooms-cards {
+    @include flex-style(row, center);
+    flex-wrap: wrap;
+    height: 40vh;
+    width: 400px;
+    background-color: $lighter-backgrounds;
+    overflow: auto;
+    border-radius: 10px;
+    border: 2px solid $guest-history-border;
+  }
+  
+  .room-card {
+    background-color: white;
+    align-self: center;
+    box-shadow: $box-shadow;
+    margin: 10px;
+    height: auto;
+    width: 40%;
+    border-radius: 5px;
+  }
+  
+  #users {
+    background-color: white;
+    border: $manager-border;
+    height: 90%;
+    width: 100%;
+    border-radius: 10px;
+    overflow: auto;
+  }
+  
+  .booking-card-manager {
+    background-color: white;
+    margin-left: 20px;
+    box-shadow: 0 10px 38px rgba(0,0,0,0.10), 0 15px 12px rgba(0,0,0,0.22);
+    margin-top: 10px;
+    height: 50%;
+    width: 80%;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .guest-left,
+  .manage-bookings {
+    height: 90%;
+    width: 40%
+  }
+  
+  .pop-up-section {
+    background-color: rgba(0, 0, 0, 0.7); 
+    position:fixed;
+      width:100%;
+      height:100%;
+      top:0px;
+      left:0px;
+      z-index:1000;
+  }
+  
+  .pop-up-box {
+    position: absolute;
+    width: 600px;
+    height: 400px;
+    z-index: 15;
+    top: 50%;
+    left: 50%;
+    margin: -200px 0 0 -300px;
+    background: white;
+    border-radius: 20px;
+  }
+  
+  .filter-by-header {
+    margin-top: 45px;
+  }
+  
+  .user-bookings {
+    height: 60vh;
+  }
+  
+  .search-users-sec {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .book-room-manager,
+  .delete-booking-manager {
+    background-color: white;
+    height: 30%;
+    width: 90%;
+    border-radius: 30px;
+    border: 1px solid black
+  }
+  
+  #user-id,
+  #room-number {
+    width: 80px;
+    margin-left: 10px;
+    height: 30px;
+  }
+  
+  #booking-num-id {
+    width: 150px;
+    margin-left: 20px;
+  }
+
+  #cancel-booking {
+    height: 30px;
+    border-radius: 15px;
+    margin-top: 40px;
+    margin-left: 35%;
+  }
+  
+  #confirm-booking {
+    height: 30px;
+    border-radius: 15px;
+    margin-top: 40px;
+    margin-left: 25px;
+  }
+  
+  .calender-user {
+    width: 150px;
+  }
+  
+  .calender {
+    width: 150px;
+  }
+  
+  input {
+    height: 35px;
+    width: 300px;
+    border-radius: 20px;
+  }
+  
+  .guest-info {
+    display: flex;
+    flex-direction: column, 3;
+    justify-content: space-evenly;
+  }
+  
+  .av-rooms-post-card {
+    border: 2px solid black;
+    border-radius: 5px;
+    height: auto;
+    width: 50%;
+    margin: 5px;
+    background-color: white;
+  }
+  
+  #rooms-available,
+  #total-revenue,
+  #occupancy {
+    font-size: 50px;
+    margin: 0px;
+    text-align: center;
+  }
+  
+  .manager-info {
+    display: flex;
+    flex-direction: row;
+  }

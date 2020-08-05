@@ -1,0 +1,57 @@
+#search-users-button {
+    height: 40px;
+    border-radius: $button-radius;
+  }
+  
+  .filter-button {
+    @extend #search-users-button;
+    width: 100px;
+    margin-bottom: 20px;
+    align-self: center;
+  }
+  
+  #log-out-button {
+    margin: 50px;
+    @extend #search-users-button;
+  }
+  
+  #back-button {
+    height: 30px;
+    border-radius: $button-radius;
+    margin-left: 20px;
+    margin-top: 10px;
+  }
+  
+  #book-button-card {
+    @extend #back-button;
+  }
+  
+  #book-button,
+  .date-search,
+  #delete-button {
+    border-radius: $button-radius;
+    height: 21px;
+  }
+  
+  #delete-button {
+    color: red
+  }
+  
+  .book-this-room-button {
+    @extend #back-button;
+    margin-bottom: 10px;
+  }
+  
+  .search-button-user-page {
+    height: 30px;
+    border-radius: $button-radius;
+    margin-top: 5px;
+    align-self: center;
+  }
+  
+  .submit-button {
+    margin: 20px;
+    width: 80px;
+    height: 40px;
+    border-radius: $button-radius;
+  }

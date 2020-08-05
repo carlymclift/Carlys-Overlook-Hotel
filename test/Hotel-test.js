@@ -66,7 +66,7 @@ describe('Hotel', () => {
 
   it('Should be able to find to percent of occupied rooms today', () => {
     const percent = hotel.findPercentOccupiedRoomsForDate('2020/01/10', bookingsSampleData)
-    expect(hotel.occupancy).to.eql(12)
-    expect(percent).to.eql(12)
+    expect(hotel.occupancy).to.eql('12')
+    expect(percent).to.eql('12')
   })
 });

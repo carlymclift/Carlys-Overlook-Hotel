@@ -1,76 +1,23 @@
 @import "variables";
 @import "mixins";
-
-
-//main styling
+@import 'buttons';
+@import 'users-section';
 
 html {
   background-image: url('https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80');
   background-size: cover;
   height: 100%;
-  // overflow: hidden;
-  // overflow: scroll;
 }
 
 body {
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
   // font-family: 'Comic Sans MS', 'Comic Sans', cursive;
 }
 
 header {
   display: flex;
   justify-content: center;
-  background-color: rgba(254, 177, 219, 0.7); 
-  border-radius: 10px;
-  margin: 20px;
-}
-
-.booking-history-list {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 80%;
-  background-color: rgba(219, 219, 219, 0.445);
-  overflow: auto;
-  border-radius: 20px;
-  border: 2px solid rgb(255, 72, 0);
-}
-
-.booking-card {
-  background-color: white!important;
-  align-self: center;
-  box-shadow: 0 10px 38px rgba(0,0,0,0.10), 0 15px 12px rgba(0,0,0,0.22);
-  margin-top: 10px;
-  height: 50%;
-  width: 70%;
-  border-radius: 5px;
-  opacity: 0.9 !important;
-}
-
-#available-rooms-cards {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  height: 70%;
-  width: 400px;
-  // background-color: white;
-  background-color: rgba(204, 226, 255, 0.7); 
-  // opacity: 0.5;
-  overflow: auto;
-  border-radius: 20px;
-  border: 2px solid rgb(255, 3, 3);
-  // @extend .book-room-manager;
-}
-
-.room-card {
-  background-color: whitesmoke;
-  align-self: center;
-  box-shadow: 0 10px 38px rgba(0,0,0,0.10), 0 15px 12px rgba(0,0,0,0.22);
-  margin: 10px;
-  height: auto;
-  width: 40%;
-  border-radius: 5px;
+  background-color: $header-background-color;
 }
 
 .logo {
@@ -82,82 +29,41 @@ header {
   background-image: url(https://image.flaticon.com/icons/svg/3075/3075439.svg);
 }
 
-#users {
-  background-color: rgba(255, 255, 255, 0.7); 
-  height: 90%;
-  width: 100%;
-  border-radius: 10px;
-  overflow: auto;
-}
-
-.booking-card-manager {
-  background-color: white;
-  margin-left: 20px;
-  box-shadow: 0 10px 38px rgba(0,0,0,0.10), 0 15px 12px rgba(0,0,0,0.22);
-  margin-top: 10px;
-  height: 50%;
-  width: 80%;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
 aside {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background-color: rgba(255, 137, 104, 0.7); 
-  border-radius: 10px;
-  margin: 30px;
-  // height: 500px;
+  padding: 20px;
+  height: 60vh;
+  width: 25%;
 }
 
-.guest-left,
-.manage-bookings {
-  height: 90%;
-  width: 40%
+.hidden {
+  display: none;
 }
 
-.pop-up-section {
-  // height: 100vh;
-  // width: 100%;
-  background-color: rgba(0, 0, 0, 0.7); 
-  // z-index: 99 !important;
-  // position: absolute;
-  position:fixed;
-    width:100%;
-    height:100%;
-    top:0px;
-    left:0px;
-    z-index:1000;
-}
-
-.pop-up-box {
-  // align-self: center;
-  // height: 40%;
-  // width: 50%;
-  // background-color: white;
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: center;
-  position: absolute;
-  width: 600px;
-  height: 400px;
-  z-index: 15;
-  top: 50%;
-  left: 50%;
-  margin: -200px 0 0 -300px;
-  background: white;
+#login-box {
+  border-color: black;
+  background-color: white;
+  border-style: groove;
   border-radius: 20px;
-  // align-items: center;
-  
+  text-align: center;
+  width: 400px;
+  position: absolute;
+  right: 0;
+  left: 0;
+  margin: auto;
+  font-size: 150%;
+  margin-top: 100px;
+
+  .login-field {
+    padding: 20px;
+    font-size: 100%;
+  }
 }
 
-// text
+hr {
+  border-color: black;
+}
 
-p,
-h3 {
+p {
   margin-left: 20px;
 }
 
@@ -175,286 +81,22 @@ h2 {
   text-align: center;
 }
 
-h5 {
-  margin: 0;
-}
-
-.filter-by-header {
-  margin-top: 45px;
-}
-
-.booking-input,
-.user-bookings {
-  display: flex;
-  flex-direction: row;
-  height: 60vh;
-  justify-content: space-evenly;
-}
-
-.user-bookings {
-  height: 60vh;
-}
-
-.search-users-sec {
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-}
-
-// .manage-bookings {
-//   width: 50%;
-// }
-
-.book-room-manager,
-.delete-booking-manager {
-  background-color: white;
-  height: 30%;
-  width: 90%;
-  // padding: 30px;
-  // margin: 20px;
-  border-radius: 30px;
-  border: 1px solid black
-}
-
-// .book-delete {
-//   width: 80%;
-//   height: 40%;
-//   background-color: rgba(255, 255, 255, 0.7); 
-//   border-radius: 20px;
-// }
-
-.booking-area {
-  width: 100%;
-  height: 75%;
-  background-color: rgba(255, 255, 255, 0.7); 
-  border-radius: 10px;
-}
-
-.delete-booking-area {
-  width: 100%;
-  height: 20%;
-  background-color: rgba(255, 255, 255, 0.7); 
-  border-radius: 10px;
-}
-
-#user-id,
-#room-number {
-  width: 80px;
-  margin-left: 10px;
-}
-
-#booking-num-id {
-  width: 150px;
-  margin-left: 20px;
-}
-
-aside {
-  padding: 20px;
-  height: 60vh;
-  width: 25%;
-}
-
-// buttons
-
-#search-users-button {
-  height: 40px;
-  // border-radius: 15px;
-  border-radius: 30px;
-}
-
-#back-button,
-#book-button-card {
-  height: 30px;
-  border-radius: 15px;
-  margin-left: 20px;
-  margin-top: 10px;
-}
-
-#book-button,
-.date-search,
-#delete-button {
-  border-radius: 15px;
-  height: 21px;
-}
-
-#delete-button {
-  color: red
-}
-
-#cancel-booking {
-  height: 30px;
-  border-radius: 15px;
-  margin-top: 40px;
-  margin-left: 35%;
-}
-
-#confirm-booking {
-  height: 30px;
-  border-radius: 15px;
-  margin-top: 40px;
-  margin-left: 25px;
-}
-
-// .booking-card {
-//   margin-top: 20px;
-// }
-
-#log-out-button {
-  margin: 50px;
-  @extend #search-users-button;
-}
-
-.filter-button {
-  @extend #search-users-button;
-  width: 100px;
-  margin-bottom: 20px;
-  align-self: center;
-}
-
-.book-this-room-button {
-  margin-left: 30px;
-  margin-bottom: 10px;
-  height: 30px;
-  border-radius: 15px;
-}
-
-.search-button-user-page {
-  height: 30px;
-  border-radius: 30px;
-  margin-top: 5px;
-  align-self: center;
-}
-
-.calender-user {
-  width: 150px;
-}
-
-.calender {
-  width: 150px;
-}
-
-
-.filter-section {
-  display: flex;
-  flex-direction: column;
-  margin-top: 20px;
-  // justify-content: center;
-  // justify-content: space;
-}
-
-h2 {
-  padding: 15px;
-}
-
-hr {
-  border-color: black;
-}
-
-#login-box {
-  border-color: black;
-  background-color: white;
-  border-style: groove;
-  border-radius: 20px;
-  text-align: center;
-  width: 400px;
-  position: absolute;
-  right: 0;
-  left: 0;
-  margin: auto;
-  font-size: 150%;
-  margin-top: 100px;
-}
-
-.login-field {
-  padding: 20px;
-  font-size: 100%;
-}
-
-input {
-  height: 35px;
-  width: 300px;
-  border-radius: 20px;
-  // align-self: center;
-}
-
-.submit-button {
-  margin: 20px;
-  width: 80px;
-  height: 40px;
-  border-radius: 20px;
-}
-
-.hidden {
-  display: none;
-}
-
-.guest-info {
-  display: flex;
-  flex-direction: column, 3;
-  justify-content: space-evenly;
-}
-
-#available-rooms-manager-post {
-  display: flex;
-  // flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  height: 55%;
-  width: 100%;
-  background-color:rgba(255, 255, 255, 0.7);
-  overflow: auto;
-  align-self: center;
-}
-
-.av-rooms-post-card {
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: space-between;
-  border: 2px solid black;
-  border-radius: 5px;
-  height: auto;
-  width: 50%;
-  margin: 5px;
-  background-color: white;
-}
-
-#rooms-available,
-#total-revenue,
-#occupancy {
-  font-size: 50px;
-  margin: 0px;
-  text-align: center;
-}
-
-.hotel-info-sec {
-  background-color: rgba(108, 221, 224, 0.7);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  // justify-content: s;
-  height: 60vh;
+.select-date-text {
+  margin: 10px;
 }
 
 .manager-left-text {
   font-size: 15px;
-  // padding: 15px;
+  text-align: center;
+  // margin-bottom: 15px;;
+  padding-bottom: 20px;;
 }
 
-.manager-info {
-  display: flex;
-  flex-direction: row;
+.manager-header {
+  font-size: 50px;
+  margin: 25px;
 }
 
-.book-trip-sec,
-.manage-users {
-  background-color: rgba(104, 164, 255, 0.7); 
-  width: 60%;
-  height: 100%;
-  border-radius: 15px;
-  margin-top: 30px;
+.av-room-text {
+  margin: 0;
 }
-
-.book-trip-sec {
-  background-color: rgba(226, 105, 105, 0.7); 
-}
-
