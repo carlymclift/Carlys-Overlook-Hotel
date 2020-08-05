@@ -1,10 +1,5 @@
 # Overlook Hotel
 
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-
 <br />
 <p align="center">
   <a href="https://github.com/carlymclift/Carlys-Overlook-Hotel">
@@ -26,10 +21,8 @@
 
 - [About the Project](#about-the-project)
 - [Installation](#installation)
-- [Usage](#usage)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
-- [Acknowledgements](#acknowledgements)
 
 <!-- ABOUT THE PROJECT -->
 
@@ -40,7 +33,12 @@
 - As a manager, you will be taken to a home page with all guest information. You can search for guests by name, and see all of their booking history. You will also see the hotel's daily metrics (occupancy, revenue, and number of available rooms for the day). To book, you need to select date, input the user id and room number from the available rooms show and select book. A manager can also delete a booking by ID number.
 
 <img width="1431" alt="Screen Shot 2020-08-04 at 7 49 11 PM" src="https://user-images.githubusercontent.com/61163743/89363375-497ec900-d68d-11ea-8c48-277af7249b64.png">
-
+### Guest Home Page:
+<img width="1429" alt="Screen Shot 2020-08-04 at 7 51 51 PM" src="https://user-images.githubusercontent.com/61163743/89364417-a9766f00-d68f-11ea-9fad-4588ac973e8f.png">
+### Manager Home Page:
+<img width="1432" alt="Screen Shot 2020-08-04 at 7 51 22 PM" src="https://user-images.githubusercontent.com/61163743/89364478-cdd24b80-d68f-11ea-8837-56fe9b951ced.png">
+### Booking Confirmation:
+<img width="1433" alt="Screen Shot 2020-08-04 at 7 52 06 PM" src="https://user-images.githubusercontent.com/61163743/89364535-e93d5680-d68f-11ea-95af-417d489c7794.png">
 
 - This Project uses:
   - HTML
@@ -48,6 +46,8 @@
   - CSS/SASS
   - Chai/Mocha Testing
   - WebPack
+  - moment.js
+  - npm
 
 ### Installation
 
@@ -65,20 +65,10 @@ https://github.com/carlymclift/Carlys-Overlook-Hotel
 
 <!-- USAGE EXAMPLES -->
 
-## Usage
-
-- Users can see their step goal, all time step record...  
-  ![screenshot of left side static information](src/images/userCard.png)
-
-- Users can see there daily and weekly statistics for activities, sleep and hydration  
-  ![screenshot of middle main display](src/images/middleSection.png)
-
-- Users can see their friends step counts for the week and see who won the last week's step challenge  
-  ![screen shot of right side friends display](src/images/friendSection.png)
-
-- The details of this project are outlined in the <a href="https://frontend.turing.io/projects/overlook.html" target="\__blank">Overlook Project Spec</a>.
 
 ## Roadmap
+
+- The details of this project are outlined in the <a href="https://frontend.turing.io/projects/overlook.html" target="\__blank">Overlook Project Spec</a>.
 
 See the [open issues](https://github.com/carlymclift/Carlys-Overlook-Hotel/issues) for a list of proposed features (and known issues).
 
