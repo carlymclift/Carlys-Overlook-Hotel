@@ -52,7 +52,7 @@ document.querySelector('.filter-section')
     getCurrentCardsDisplayed();
   })
 
-window.onload = startUp();
+window.onload = startUp;
 
 function startUp() {
   fetchData()
@@ -109,7 +109,7 @@ function instantiateManagerInfo() {
   manager = new Manager(username.value, password.value)
   hotel.findAllAvailableRoomsByDate(currentDate, data.roomsData, data.bookingsData)
   hotel.calculateTotalRevenueForDate(currentDate, data.roomsData, data.bookingsData)
-  hotel.findPercentOccupiedRoomsForDate(currentDate, data.bookingsData).toFixed()
+  hotel.findPercentOccupiedRoomsForDate(currentDate, data.bookingsData)
   let avRooms = hotel.availableRooms
   domUpdate.populateAvailableRoomsForBooking(avRooms)
   domUpdate.populateManagerPageInfo(hotel, data.guestData)

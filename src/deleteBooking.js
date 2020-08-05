@@ -7,7 +7,6 @@ function deleteBooking(deleteData) {
     body: JSON.stringify(deleteData),
   })
     .then(response => response.json())
-    .then(json => console.log('Request success: ', json))
     .catch(err => console.log(err.message))
 }
   
