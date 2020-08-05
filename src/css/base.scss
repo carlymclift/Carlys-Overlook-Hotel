@@ -63,8 +63,7 @@ hr {
   border-color: black;
 }
 
-p,
-h3 {
+p {
   margin-left: 20px;
 }
 
@@ -82,16 +81,22 @@ h2 {
   text-align: center;
 }
 
- 
-h2 {
-  padding: 15px;
-}
-
-h5 {
-  margin: 0;
+.select-date-text {
+  margin: 10px;
 }
 
 .manager-left-text {
   font-size: 15px;
+  text-align: center;
+  // margin-bottom: 15px;;
+  padding-bottom: 20px;;
 }
 
+.manager-header {
+  font-size: 50px;
+  margin: 25px;
+}
+
+.av-room-text {
+  margin: 0;
+}

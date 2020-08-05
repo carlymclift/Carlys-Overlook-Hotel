@@ -10,7 +10,7 @@
         <h1>Welcome to Overlook Hotel!</h1>
       </header>
       <div id='login-box'>
-        <h3>Enter Login Info:</h3>
+        <h2>Enter Login Info:</h2>
         <div class='login-field'>
         <label>Username:
             <br />
@@ -18,17 +18,11 @@
             <br />
         <label>Password:
             <br />
-              <input id="password-input" type="text" name="password" ></label>
+              <input id="password-input" type="password" name="password" ></label>
             <br />
             <button id="login-button" class='submit-button'>Login</button>
         </div>
       </div>
-    </section>
-    <section id="pop-up-section" class="pop-up-section hidden">
-      <div class="pop-up-box" id="pop-up-box">
-        <h2>Confirm your booking</h2>
-      </div>
-
     </section>
     <section id='guest-sec' class="hidden">
       <header>
@@ -47,7 +41,7 @@
           <div class="booking-input">
             <section>
               <section>
-                <h3>Select date</h3>
+                <h2 class="select-date-text">Select date</h2>
                 <label for="date">Date:</label>
                 <input type="date" name="date" min="2020-08-01" id="date-on-user" class="calender-user">
                 <button class="search-button-user-page">search</button>
@@ -69,24 +63,29 @@
       </section>
     </section>
   </section>
+  <section id="pop-up-section" class="pop-up-section hidden">
+    <div class="pop-up-box" id="pop-up-box">
+      <h3>Confirm your booking</h3>
+    </div>
+  </section>
     <section id='manager-sec' class="hidden">
       <header>
         <div class="logo"></div>
-        <h1>Overlook Manager</h1>
+        <h3 class="manager-header">Overlook Manager</h3>
         <button id="log-out-button" onClick="window.location.reload();">Log out</button>
       </header>
       <section class='manager-info'>
         <aside class="hotel-info-sec">
           <span>
-            <h2 class="manager-left-text">Rooms Available Today:</h2>
+            <h3 class="manager-left-text">Rooms Available Today:</h3>
             <p id="rooms-available"></p>
           </span>
           <span>
-            <h2 class="manager-left-text">Total Revenue Today:</h2>
+            <h3 class="manager-left-text">Total Revenue Today:</h3>
             <p id="total-revenue"></p>
           </span>
           <span>
-            <h2 class="manager-left-text">Today's Occupancy:</h2>
+            <h3 class="manager-left-text">Today's Occupancy:</h3>
             <p id="occupancy"></p>
           </span>
         </aside>
@@ -107,7 +106,7 @@
                 <label for="date">Date:</label>
                 <input type="date" name="date" min="2020-08-01" id="date-on-manager" class="calender manage">
                 <button class="date-search">Search</button>
-                <h5>Available Rooms:</h5>
+                <h4 class="av-room-text">Available Rooms:</h4>
                 <section id="available-rooms-manager-post">
 
               </section>
@@ -116,7 +115,7 @@
                 <button id="book-button" class="manage">Book</button>
               </div>
               <div class="delete-booking-area">
-                <h3>Delete Booking:</h3>
+                <h4>Delete Booking:</h4>
                 <input type="number" placeholder="Booking id" class="manage" name="booking-id" id="booking-num-id">
                 <button id="delete-button" class="manage">Delete</button>
               </div>
